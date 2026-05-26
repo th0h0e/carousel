@@ -21,6 +21,6 @@
     "vue": "3.5.34"
   },
   "dependencies": {
-    "wheel-gestures": "^1.0.0"
+    "wheel-gestures": "1.0.0"
   }
 }
