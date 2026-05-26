@@ -1,4 +1,4 @@
-import type { LimitType } from './Limit'
+import type { LimitType } from './Limit';
 import { Limit } from './Limit'
 import { arrayIsLastIndex, arrayLast, deltaAbs } from './utils'
 
@@ -14,7 +14,7 @@ export function ScrollContain(
   contentSize: number,
   snapsAligned: number[],
   containScroll: ScrollContainOptionType,
-  pixelTolerance: number,
+  pixelTolerance: number
 ): ScrollContainType {
   const scrollBounds = Limit(-contentSize + viewSize, 0)
   const snapsBounded = measureBounded()
@@ -46,7 +46,7 @@ export function ScrollContain(
         if (usePixelTolerance(max, snap)) return max
         return snap
       })
-      .map(scrollBound => parseFloat(scrollBound.toFixed(3)))
+      .map((scrollBound) => parseFloat(scrollBound.toFixed(3)))
   }
 
   function measureContained(): number[] {
@@ -58,7 +58,7 @@ export function ScrollContain(
 
   const self: ScrollContainType = {
     snapsContained,
-    scrollContainLimit,
+    scrollContainLimit
   }
   return self
 }

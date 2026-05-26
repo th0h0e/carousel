@@ -5,7 +5,7 @@ import {
   arrayFromNumber,
   arrayIsLastIndex,
   arrayLast,
-  arrayLastIndex,
+  arrayLastIndex
 } from './utils'
 
 export type SlideRegistryType = {
@@ -18,7 +18,7 @@ export function SlideRegistry(
   scrollSnaps: number[],
   scrollContainLimit: LimitType,
   slidesToScroll: SlidesToScrollType,
-  slideIndexes: number[],
+  slideIndexes: number[]
 ): SlideRegistryType {
   const { groupSlides } = slidesToScroll
   const { min, max } = scrollContainLimit
@@ -48,7 +48,7 @@ export function SlideRegistry(
   }
 
   const self: SlideRegistryType = {
-    slideRegistry,
+    slideRegistry
   }
   return self
 }

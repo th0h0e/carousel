@@ -8,7 +8,7 @@ import { isBoolean, isNumber } from './utils'
 
 type FocusHandlerCallbackType = (
   emblaApi: EmblaCarouselType,
-  evt: FocusEvent,
+  evt: FocusEvent
 ) => boolean | void
 
 export type FocusHandlerOptionType = boolean | FocusHandlerCallbackType
@@ -25,7 +25,7 @@ export function SlideFocus(
   scrollBody: ScrollBodyType,
   eventStore: EventStoreType,
   eventHandler: EventHandlerType,
-  watchFocus: FocusHandlerOptionType,
+  watchFocus: FocusHandlerOptionType
 ): SlideFocusType {
   const focusListenerOptions = { passive: true, capture: true }
   let lastTabPressTime = 0
@@ -42,7 +42,7 @@ export function SlideFocus(
       eventHandler.emit('slideFocusStart')
       root.scrollLeft = 0
 
-      const group = slideRegistry.findIndex(group => group.includes(index))
+      const group = slideRegistry.findIndex((group) => group.includes(index))
 
       if (!isNumber(group)) return
 
@@ -63,7 +63,7 @@ export function SlideFocus(
             defaultCallback(slideIndex)
           }
         },
-        focusListenerOptions,
+        focusListenerOptions
       )
     })
   }
@@ -73,7 +73,7 @@ export function SlideFocus(
   }
 
   const self: SlideFocusType = {
-    init,
+    init
   }
   return self
 }

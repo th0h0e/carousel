@@ -1,10 +1,10 @@
 import { isString } from './utils'
 
-export type AlignmentOptionType
-  = | 'start'
-    | 'center'
-    | 'end'
-    | ((viewSize: number, snapSize: number, index: number) => number)
+export type AlignmentOptionType =
+  | 'start'
+  | 'center'
+  | 'end'
+  | ((viewSize: number, snapSize: number, index: number) => number)
 
 export type AlignmentType = {
   measure: (n: number, index: number) => number
@@ -12,7 +12,7 @@ export type AlignmentType = {
 
 export function Alignment(
   align: AlignmentOptionType,
-  viewSize: number,
+  viewSize: number
 ): AlignmentType {
   const predefined = { start, center, end }
 
@@ -34,7 +34,7 @@ export function Alignment(
   }
 
   const self: AlignmentType = {
-    measure,
+    measure
   }
   return self
 }

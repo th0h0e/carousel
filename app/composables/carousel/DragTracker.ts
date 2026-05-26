@@ -1,5 +1,5 @@
 import type { AxisOptionType, AxisType } from './Axis'
-import type { WindowType } from './utils'
+import type { WindowType } from './utils';
 import { isMouseEvent, mathAbs } from './utils'
 
 type PointerCoordType = keyof Touch | keyof MouseEvent
@@ -14,7 +14,7 @@ export type DragTrackerType = {
 
 export function DragTracker(
   axis: AxisType,
-  ownerWindow: WindowType,
+  ownerWindow: WindowType
 ): DragTrackerType {
   const logInterval = 170
 
@@ -61,7 +61,7 @@ export function DragTracker(
     pointerDown,
     pointerMove,
     pointerUp,
-    readPoint,
+    readPoint
   }
   return self
 }

@@ -1,8 +1,8 @@
 import type { AxisType } from './Axis'
 import { arrayKeys } from './utils'
-import type { Vector1DType } from './Vector1d'
+import type { Vector1DType } from './Vector1d';
 import { Vector1D } from './Vector1d'
-import type { TranslateType } from './Translate'
+import type { TranslateType } from './Translate';
 import { Translate } from './Translate'
 
 type SlideBoundType = {
@@ -34,7 +34,7 @@ export function SlideLooper(
   snaps: number[],
   scrollSnaps: number[],
   location: Vector1DType,
-  slides: HTMLElement[],
+  slides: HTMLElement[]
 ): SlideLooperType {
   const roundingSafety = 0.5
   const ascItems = arrayKeys(slideSizesWithGaps)
@@ -57,14 +57,14 @@ export function SlideLooper(
   function findSlideBounds(offset: number): SlideBoundType[] {
     return snaps.map((snap, index) => ({
       start: snap - slideSizes[index] + roundingSafety + offset,
-      end: snap + viewSize - roundingSafety + offset,
+      end: snap + viewSize - roundingSafety + offset
     }))
   }
 
   function findLoopPoints(
     indexes: number[],
     offset: number,
-    isEndEdge: boolean,
+    isEndEdge: boolean
   ): LoopPointType[] {
     const slideBounds = findSlideBounds(offset)
 
@@ -79,7 +79,7 @@ export function SlideLooper(
         loopPoint,
         slideLocation: Vector1D(-1),
         translate: Translate(axis, slides[index]),
-        target: () => (location.get() > loopPoint ? initial : altered),
+        target: () => (location.get() > loopPoint ? initial : altered)
       }
     })
   }
@@ -98,7 +98,7 @@ export function SlideLooper(
 
   function canLoop(): boolean {
     return loopPoints.every(({ index }) => {
-      const otherIndexes = ascItems.filter(i => i !== index)
+      const otherIndexes = ascItems.filter((i) => i !== index)
       return removeSlideSizes(otherIndexes, viewSize) <= 0.1
     })
   }
@@ -114,14 +114,14 @@ export function SlideLooper(
   }
 
   function clear(): void {
-    loopPoints.forEach(loopPoint => loopPoint.translate.clear())
+    loopPoints.forEach((loopPoint) => loopPoint.translate.clear())
   }
 
   const self: SlideLooperType = {
     canLoop,
     clear,
     loop,
-    loopPoints,
+    loopPoints
   }
   return self
 }

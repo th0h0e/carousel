@@ -60,7 +60,7 @@ export const defaultOptions: OptionsType = {
   watchDrag: true,
   watchResize: true,
   watchSlides: true,
-  watchFocus: true,
+  watchFocus: true
 }
 
 export type EmblaOptionsType = Partial<OptionsType>

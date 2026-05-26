@@ -44,7 +44,7 @@ export function Limit(min: number = 0, max: number = 0): LimitType {
     reachedAny,
     reachedMax,
     reachedMin,
-    removeOffset,
+    removeOffset
   }
   return self
 }

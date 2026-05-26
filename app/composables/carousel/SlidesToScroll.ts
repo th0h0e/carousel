@@ -5,7 +5,7 @@ import {
   arrayLast,
   arrayLastIndex,
   isNumber,
-  mathAbs,
+  mathAbs
 } from './utils'
 
 export type SlidesToScrollOptionType = 'auto' | number
@@ -23,15 +23,15 @@ export function SlidesToScroll(
   slideRects: NodeRectType[],
   startGap: number,
   endGap: number,
-  pixelTolerance: number,
+  pixelTolerance: number
 ): SlidesToScrollType {
   const { startEdge, endEdge, direction } = axis
   const groupByNumber = isNumber(slidesToScroll)
 
   function byNumber<Type>(array: Type[], groupSize: number): Type[][] {
     return arrayKeys(array)
-      .filter(i => i % groupSize === 0)
-      .map(i => array.slice(i, i + groupSize))
+      .filter((i) => i % groupSize === 0)
+      .map((i) => array.slice(i, i + groupSize))
   }
 
   function bySize<Type>(array: Type[]): Type[][] {
@@ -64,7 +64,7 @@ export function SlidesToScroll(
   }
 
   const self: SlidesToScrollType = {
-    groupSlides,
+    groupSlides
   }
   return self
 }

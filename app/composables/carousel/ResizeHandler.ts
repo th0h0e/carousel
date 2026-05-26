@@ -2,12 +2,12 @@ import type { AxisType } from './Axis'
 import type { EmblaCarouselType } from './EmblaCarousel'
 import type { EventHandlerType } from './EventHandler'
 import type { NodeRectsType } from './NodeRects'
-import type { WindowType } from './utils'
+import type { WindowType } from './utils';
 import { isBoolean, mathAbs } from './utils'
 
 type ResizeHandlerCallbackType = (
   emblaApi: EmblaCarouselType,
-  entries: ResizeObserverEntry[],
+  entries: ResizeObserverEntry[]
 ) => boolean | void
 
 export type ResizeHandlerOptionType = boolean | ResizeHandlerCallbackType
@@ -24,7 +24,7 @@ export function ResizeHandler(
   slides: HTMLElement[],
   axis: AxisType,
   watchResize: ResizeHandlerOptionType,
-  nodeRects: NodeRectsType,
+  nodeRects: NodeRectsType
 ): ResizeHandlerType {
   const observeNodes = [container].concat(slides)
   let resizeObserver: ResizeObserver
@@ -68,7 +68,7 @@ export function ResizeHandler(
     })
 
     ownerWindow.requestAnimationFrame(() => {
-      observeNodes.forEach(node => resizeObserver.observe(node))
+      observeNodes.forEach((node) => resizeObserver.observe(node))
     })
   }
 
@@ -79,7 +79,7 @@ export function ResizeHandler(
 
   const self: ResizeHandlerType = {
     init,
-    destroy,
+    destroy
   }
   return self
 }

@@ -2,62 +2,62 @@ import { Alignment } from './Alignment'
 import type {
   AnimationsType,
   AnimationsUpdateType,
-  AnimationsRenderType,
-} from './Animations'
+  AnimationsRenderType
+} from './Animations';
 import {
-  Animations,
+  Animations
 } from './Animations'
-import type { AxisType } from './Axis'
+import type { AxisType } from './Axis';
 import { Axis } from './Axis'
-import type { CounterType } from './Counter'
+import type { CounterType } from './Counter';
 import { Counter } from './Counter'
-import type { DragHandlerType } from './DragHandler'
+import type { DragHandlerType } from './DragHandler';
 import { DragHandler } from './DragHandler'
 import { DragTracker } from './DragTracker'
 import type { EventHandlerType } from './EventHandler'
-import type { EventStoreType } from './EventStore'
+import type { EventStoreType } from './EventStore';
 import { EventStore } from './EventStore'
 import type { LimitType } from './Limit'
-import type { NodeRectType } from './NodeRects'
+import type { NodeRectType} from './NodeRects';
 import { NodeRects } from './NodeRects'
 import type { OptionsType } from './Options'
-import type { PercentOfViewType } from './PercentOfView'
+import type { PercentOfViewType } from './PercentOfView';
 import { PercentOfView } from './PercentOfView'
-import type { ResizeHandlerType } from './ResizeHandler'
+import type { ResizeHandlerType } from './ResizeHandler';
 import { ResizeHandler } from './ResizeHandler'
-import type { ScrollBodyType } from './ScrollBody'
+import type { ScrollBodyType } from './ScrollBody';
 import { ScrollBody } from './ScrollBody'
-import type { ScrollBoundsType } from './ScrollBounds'
+import type { ScrollBoundsType } from './ScrollBounds';
 import { ScrollBounds } from './ScrollBounds'
 import { ScrollContain } from './ScrollContain'
 import { ScrollLimit } from './ScrollLimit'
-import type { ScrollLooperType } from './ScrollLooper'
+import type { ScrollLooperType } from './ScrollLooper';
 import { ScrollLooper } from './ScrollLooper'
-import type { ScrollProgressType } from './ScrollProgress'
+import type { ScrollProgressType } from './ScrollProgress';
 import { ScrollProgress } from './ScrollProgress'
 import { ScrollSnaps } from './ScrollSnaps'
-import type { SlideRegistryType } from './SlideRegistry'
+import type { SlideRegistryType } from './SlideRegistry';
 import { SlideRegistry } from './SlideRegistry'
-import type { ScrollTargetType } from './ScrollTarget'
+import type { ScrollTargetType } from './ScrollTarget';
 import { ScrollTarget } from './ScrollTarget'
-import type { ScrollToType } from './ScrollTo'
+import type { ScrollToType } from './ScrollTo';
 import { ScrollTo } from './ScrollTo'
-import type { SlideFocusType } from './SlideFocus'
+import type { SlideFocusType } from './SlideFocus';
 import { SlideFocus } from './SlideFocus'
-import type { SlideLooperType } from './SlideLooper'
+import type { SlideLooperType } from './SlideLooper';
 import { SlideLooper } from './SlideLooper'
-import type { SlidesHandlerType } from './SlidesHandler'
+import type { SlidesHandlerType } from './SlidesHandler';
 import { SlidesHandler } from './SlidesHandler'
-import type { SlidesInViewType } from './SlidesInView'
+import type { SlidesInViewType } from './SlidesInView';
 import { SlidesInView } from './SlidesInView'
 import { SlideSizes } from './SlideSizes'
-import type { SlidesToScrollType } from './SlidesToScroll'
+import type { SlidesToScrollType } from './SlidesToScroll';
 import { SlidesToScroll } from './SlidesToScroll'
-import type { TranslateType } from './Translate'
+import type { TranslateType } from './Translate';
 import { Translate } from './Translate'
-import type { WindowType } from './utils'
+import type { WindowType } from './utils';
 import { arrayKeys, arrayLast, arrayLastIndex } from './utils'
-import type { Vector1DType } from './Vector1d'
+import type { Vector1DType } from './Vector1d';
 import { Vector1D } from './Vector1d'
 
 export type EngineType = {
@@ -105,7 +105,7 @@ export function Engine(
   ownerDocument: Document,
   ownerWindow: WindowType,
   options: OptionsType,
-  eventHandler: EventHandlerType,
+  eventHandler: EventHandlerType
 ): EngineType {
   // Options
   const {
@@ -124,7 +124,7 @@ export function Engine(
     watchResize,
     watchSlides,
     watchDrag,
-    watchFocus,
+    watchFocus
   } = options
 
   // Measurements
@@ -144,7 +144,7 @@ export function Engine(
     slideRects,
     slides,
     readEdgeGap,
-    ownerWindow,
+    ownerWindow
   )
   const slidesToScroll = SlidesToScroll(
     axis,
@@ -155,14 +155,14 @@ export function Engine(
     slideRects,
     startGap,
     endGap,
-    pixelTolerance,
+    pixelTolerance
   )
   const { snaps, snapsAligned } = ScrollSnaps(
     axis,
     alignment,
     containerRect,
     slideRects,
-    slidesToScroll,
+    slidesToScroll
   )
   const contentSize = -arrayLast(snaps) + arrayLast(slideSizesWithGaps)
   const { snapsContained, scrollContainLimit } = ScrollContain(
@@ -170,7 +170,7 @@ export function Engine(
     contentSize,
     snapsAligned,
     containScroll,
-    pixelTolerance,
+    pixelTolerance
   )
   const scrollSnaps = containSnaps ? snapsContained : snapsAligned
   const { limit } = ScrollLimit(contentSize, scrollSnaps, loop)
@@ -183,7 +183,7 @@ export function Engine(
   // Animation
   const update: AnimationsUpdateType = (
     { dragHandler, scrollBody, scrollBounds, options: { loop } },
-    timeStep,
+    timeStep
   ) => {
     if (!loop) scrollBounds.constrain(dragHandler.pointerDown())
     scrollBody.seek(timeStep)
@@ -201,9 +201,9 @@ export function Engine(
       animation,
       eventHandler,
       scrollBounds,
-      options: { loop },
+      options: { loop }
     },
-    lagOffset,
+    lagOffset
   ) => {
     const shouldSettle = scrollBody.settled()
     const withinBounds = !scrollBounds.shouldConstrain()
@@ -215,8 +215,8 @@ export function Engine(
     }
     if (!hasSettled) eventHandler.emit('scroll')
 
-    const interpolatedLocation
-      = location.get() * lagOffset + previousLocation.get() * (1 - lagOffset)
+    const interpolatedLocation =
+      location.get() * lagOffset + previousLocation.get() * (1 - lagOffset)
 
     offsetLocation.set(interpolatedLocation)
 
@@ -230,8 +230,8 @@ export function Engine(
   const animation = Animations(
     ownerDocument,
     ownerWindow,
-    timeStep => update(engine, timeStep),
-    (lagOffset: number) => render(engine, lagOffset),
+    (timeStep) => update(engine, timeStep),
+    (lagOffset: number) => render(engine, lagOffset)
   )
 
   // Shared
@@ -247,14 +247,14 @@ export function Engine(
     previousLocation,
     target,
     duration,
-    friction,
+    friction
   )
   const scrollTarget = ScrollTarget(
     loop,
     scrollSnaps,
     contentSize,
     limit,
-    target,
+    target
   )
   const scrollTo = ScrollTo(
     animation,
@@ -263,7 +263,7 @@ export function Engine(
     scrollBody,
     scrollTarget,
     target,
-    eventHandler,
+    eventHandler
   )
   const scrollProgress = ScrollProgress(limit)
   const eventStore = EventStore()
@@ -271,7 +271,7 @@ export function Engine(
     container,
     slides,
     eventHandler,
-    inViewThreshold,
+    inViewThreshold
   )
   const { slideRegistry } = SlideRegistry(
     containSnaps,
@@ -279,7 +279,7 @@ export function Engine(
     scrollSnaps,
     scrollContainLimit,
     slidesToScroll,
-    slideIndexes,
+    slideIndexes
   )
   const slideFocus = SlideFocus(
     root,
@@ -289,7 +289,7 @@ export function Engine(
     scrollBody,
     eventStore,
     eventHandler,
-    watchFocus,
+    watchFocus
   )
 
   // Engine
@@ -320,7 +320,7 @@ export function Engine(
       dragThreshold,
       skipSnaps,
       friction,
-      watchDrag,
+      watchDrag
     ),
     eventStore,
     percentOfView,
@@ -338,7 +338,7 @@ export function Engine(
       slides,
       axis,
       watchResize,
-      nodeRects,
+      nodeRects
     ),
     scrollBody,
     scrollBounds: ScrollBounds(
@@ -346,13 +346,13 @@ export function Engine(
       offsetLocation,
       target,
       scrollBody,
-      percentOfView,
+      percentOfView
     ),
     scrollLooper: ScrollLooper(contentSize, limit, offsetLocation, [
       location,
       offsetLocation,
       previousLocation,
-      target,
+      target
     ]),
     scrollProgress,
     scrollSnapList: scrollSnaps.map(scrollProgress.get),
@@ -368,7 +368,7 @@ export function Engine(
       snaps,
       scrollSnaps,
       offsetLocation,
-      slides,
+      slides
     ),
     slideFocus,
     slidesHandler: SlidesHandler(container, eventHandler, watchSlides),
@@ -377,7 +377,7 @@ export function Engine(
     slideRegistry,
     slidesToScroll,
     target,
-    translate: Translate(axis, container),
+    translate: Translate(axis, container)
   }
 
   return engine

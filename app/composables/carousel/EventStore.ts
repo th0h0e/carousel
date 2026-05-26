@@ -8,7 +8,7 @@ export type EventStoreType = {
     node: EventTarget,
     type: EventNameType,
     handler: EventHandlerType,
-    options?: EventOptionsType,
+    options?: EventOptionsType
   ) => EventStoreType
   clear: () => void
 }
@@ -20,15 +20,14 @@ export function EventStore(): EventStoreType {
     node: EventTarget,
     type: EventNameType,
     handler: EventHandlerType,
-    options: EventOptionsType = { passive: true },
+    options: EventOptionsType = { passive: true }
   ): EventStoreType {
     let removeListener: EventRemoverType
 
     if ('addEventListener' in node) {
       node.addEventListener(type, handler, options)
       removeListener = () => node.removeEventListener(type, handler, options)
-    }
-    else {
+    } else {
       const legacyMediaQueryList = <MediaQueryList>node
       legacyMediaQueryList.addListener(handler)
       removeListener = () => legacyMediaQueryList.removeListener(handler)
@@ -39,12 +38,12 @@ export function EventStore(): EventStoreType {
   }
 
   function clear(): void {
-    listeners = listeners.filter(remove => remove())
+    listeners = listeners.filter((remove) => remove())
   }
 
   const self: EventStoreType = {
     add,
-    clear,
+    clear
   }
   return self
 }

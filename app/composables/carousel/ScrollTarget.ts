@@ -18,7 +18,7 @@ export function ScrollTarget(
   scrollSnaps: number[],
   contentSize: number,
   limit: LimitType,
-  targetVector: Vector1DType,
+  targetVector: Vector1DType
 ): ScrollTargetType {
   const { reachedAny, removeOffset, constrain } = limit
 
@@ -42,7 +42,7 @@ export function ScrollTarget(
     if (!loop) return target
     if (!direction) return minDistance(targets)
 
-    const matchingTargets = targets.filter(t => mathSign(t) === direction)
+    const matchingTargets = targets.filter((t) => mathSign(t) === direction)
     if (matchingTargets.length) return minDistance(matchingTargets)
     return arrayLast(targets) - contentSize
   }
@@ -69,7 +69,7 @@ export function ScrollTarget(
   const self: ScrollTargetType = {
     byDistance,
     byIndex,
-    shortcut,
+    shortcut
   }
   return self
 }

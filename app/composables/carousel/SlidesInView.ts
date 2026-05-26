@@ -17,7 +17,7 @@ export function SlidesInView(
   container: HTMLElement,
   slides: HTMLElement[],
   eventHandler: EventHandlerType,
-  threshold: SlidesInViewOptionsType,
+  threshold: SlidesInViewOptionsType
 ): SlidesInViewType {
   const intersectionEntryMap: IntersectionEntryMapType = {}
   let inViewCache: number[] | null = null
@@ -41,11 +41,11 @@ export function SlidesInView(
       },
       {
         root: container.parentElement,
-        threshold,
-      },
+        threshold
+      }
     )
 
-    slides.forEach(slide => intersectionObserver.observe(slide))
+    slides.forEach((slide) => intersectionObserver.observe(slide))
   }
 
   function destroy(): void {
@@ -64,7 +64,7 @@ export function SlidesInView(
         if (inViewMatch || notInViewMatch) list.push(index)
         return list
       },
-      [],
+      []
     )
   }
 
@@ -83,7 +83,7 @@ export function SlidesInView(
   const self: SlidesInViewType = {
     init,
     destroy,
-    get,
+    get
   }
 
   return self

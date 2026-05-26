@@ -8,7 +8,7 @@ export type TranslateType = {
 
 export function Translate(
   axis: AxisType,
-  container: HTMLElement,
+  container: HTMLElement
 ): TranslateType {
   const translate = axis.scroll === 'x' ? x : y
   const containerStyle = container.style
@@ -40,7 +40,7 @@ export function Translate(
   const self: TranslateType = {
     clear,
     to,
-    toggleActive,
+    toggleActive
   }
   return self
 }

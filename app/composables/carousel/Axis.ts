@@ -15,7 +15,7 @@ export type AxisType = {
 
 export function Axis(
   axis: AxisOptionType,
-  contentDirection: AxisDirectionOptionType,
+  contentDirection: AxisDirectionOptionType
 ): AxisType {
   const isRightToLeft = contentDirection === 'rtl'
   const isVertical = axis === 'y'
@@ -50,7 +50,7 @@ export function Axis(
     startEdge,
     endEdge,
     measureSize,
-    direction,
+    direction
   }
   return self
 }

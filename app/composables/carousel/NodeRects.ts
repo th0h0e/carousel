@@ -20,14 +20,14 @@ export function NodeRects(): NodeRectsType {
       bottom: offsetTop + offsetHeight,
       left: offsetLeft,
       width: offsetWidth,
-      height: offsetHeight,
+      height: offsetHeight
     }
 
     return offset
   }
 
   const self: NodeRectsType = {
-    measure,
+    measure
   }
   return self
 }

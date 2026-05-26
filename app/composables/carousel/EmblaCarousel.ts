@@ -1,14 +1,14 @@
-import type { EngineType } from './Engine'
+import type { EngineType } from './Engine';
 import { Engine } from './Engine'
 import { EventStore } from './EventStore'
-import type { EventHandlerType } from './EventHandler'
+import type { EventHandlerType } from './EventHandler';
 import { EventHandler } from './EventHandler'
-import type { EmblaOptionsType, OptionsType } from './Options'
+import type { EmblaOptionsType, OptionsType } from './Options';
 import { defaultOptions } from './Options'
 import { OptionsHandler } from './OptionsHandler'
 import { PluginsHandler } from './PluginsHandler'
 import type { EmblaPluginsType, EmblaPluginType } from './Plugins'
-import type { WindowType } from './utils'
+import type { WindowType } from './utils';
 import { isString } from './utils'
 
 export type EmblaCarouselType = {
@@ -38,7 +38,7 @@ export type EmblaCarouselType = {
 function EmblaCarousel(
   root: HTMLElement,
   userOptions?: EmblaOptionsType,
-  userPlugins?: EmblaPluginType[],
+  userPlugins?: EmblaPluginType[]
 ): EmblaCarouselType {
   const ownerDocument = root.ownerDocument
   const ownerWindow = <WindowType>ownerDocument.defaultView
@@ -82,7 +82,7 @@ function EmblaCarousel(
       ownerDocument,
       ownerWindow,
       options,
-      eventHandler,
+      eventHandler
     )
 
     if (options.loop && !engine.slideLooper.canLoop()) {
@@ -94,7 +94,7 @@ function EmblaCarousel(
 
   function activate(
     withOptions?: EmblaOptionsType,
-    withPlugins?: EmblaPluginType[],
+    withPlugins?: EmblaPluginType[]
   ): void {
     if (destroyed) return
 
@@ -108,8 +108,8 @@ function EmblaCarousel(
 
     optionsMediaQueries([
       optionsBase,
-      ...pluginList.map(({ options }) => options),
-    ]).forEach(query => mediaHandlers.add(query, 'change', reActivate))
+      ...pluginList.map(({ options }) => options)
+    ]).forEach((query) => mediaHandlers.add(query, 'change', reActivate))
 
     if (!options.active) return
 
@@ -129,7 +129,7 @@ function EmblaCarousel(
 
   function reActivate(
     withOptions?: EmblaOptionsType,
-    withPlugins?: EmblaPluginType[],
+    withPlugins?: EmblaPluginType[]
   ): void {
     const startIndex = selectedScrollSnap()
     deActivate()
@@ -252,7 +252,7 @@ function EmblaCarousel(
     selectedScrollSnap,
     slideNodes,
     slidesInView,
-    slidesNotInView,
+    slidesNotInView
   }
 
   activate(userOptions, userPlugins)

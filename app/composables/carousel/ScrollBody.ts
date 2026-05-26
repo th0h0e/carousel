@@ -19,7 +19,7 @@ export function ScrollBody(
   previousLocation: Vector1DType,
   target: Vector1DType,
   baseDuration: number,
-  baseFriction: number,
+  baseFriction: number
 ): ScrollBodyType {
   let bodyVelocity = 0
   let scrollDirection = 0
@@ -41,8 +41,7 @@ export function ScrollBody(
       location.set(target)
 
       directionDiff = diff
-    }
-    else {
+    } else {
       previousLocation.set(location)
 
       bodyVelocity += diff / duration
@@ -102,7 +101,7 @@ export function ScrollBody(
     useBaseFriction,
     useBaseDuration,
     useFriction,
-    useDuration,
+    useDuration
   }
   return self
 }

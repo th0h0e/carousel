@@ -1,4 +1,4 @@
-import type { LimitType } from './Limit'
+import type { LimitType } from './Limit';
 import { Limit } from './Limit'
 import type { Vector1DType } from './Vector1d'
 
@@ -10,7 +10,7 @@ export function ScrollLooper(
   contentSize: number,
   limit: LimitType,
   location: Vector1DType,
-  vectors: Vector1DType[],
+  vectors: Vector1DType[]
 ): ScrollLooperType {
   const jointSafety = 0.1
   const min = limit.min + jointSafety
@@ -27,11 +27,11 @@ export function ScrollLooper(
     if (!shouldLoop(direction)) return
 
     const loopDistance = contentSize * (direction * -1)
-    vectors.forEach(v => v.add(loopDistance))
+    vectors.forEach((v) => v.add(loopDistance))
   }
 
   const self: ScrollLooperType = {
-    loop,
+    loop
   }
   return self
 }

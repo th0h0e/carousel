@@ -17,7 +17,7 @@ export function ScrollTo(
   scrollBody: ScrollBodyType,
   scrollTarget: ScrollTargetType,
   targetVector: Vector1DType,
-  eventHandler: EventHandlerType,
+  eventHandler: EventHandlerType
 ): ScrollToType {
   function scrollTo(target: TargetType): void {
     const distanceDiff = target.distance
@@ -28,8 +28,7 @@ export function ScrollTo(
     if (distanceDiff) {
       if (scrollBody.duration()) {
         animation.start()
-      }
-      else {
+      } else {
         animation.update()
         animation.render(1)
         animation.update()
@@ -56,7 +55,7 @@ export function ScrollTo(
 
   const self: ScrollToType = {
     distance,
-    index,
+    index
   }
   return self
 }

@@ -4,11 +4,11 @@ import type { WindowType } from './utils'
 
 export type AnimationsUpdateType = (
   engine: EngineType,
-  timeStep: number,
+  timeStep: number
 ) => void
 export type AnimationsRenderType = (
   engine: EngineType,
-  lagOffset: number,
+  lagOffset: number
 ) => void
 
 export type AnimationsType = {
@@ -24,7 +24,7 @@ export function Animations(
   ownerDocument: Document,
   ownerWindow: WindowType,
   update: (timeStep: number) => void,
-  render: (lagOffset: number) => void,
+  render: (lagOffset: number) => void
 ): AnimationsType {
   const documentVisibleHandler = EventStore()
   const timeStep = 1000 / 60
@@ -86,7 +86,7 @@ export function Animations(
     start,
     stop,
     update: () => update(timeStep),
-    render,
+    render
   }
   return self
 }

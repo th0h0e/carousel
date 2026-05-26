@@ -1,4 +1,4 @@
-import type { LimitType } from './Limit'
+import type { LimitType } from './Limit';
 import { Limit } from './Limit'
 import type { ScrollBodyType } from './ScrollBody'
 import type { Vector1DType } from './Vector1d'
@@ -16,7 +16,7 @@ export function ScrollBounds(
   location: Vector1DType,
   target: Vector1DType,
   scrollBody: ScrollBodyType,
-  percentOfView: PercentOfViewType,
+  percentOfView: PercentOfViewType
 ): ScrollBoundsType {
   const pullBackThreshold = percentOfView.measure(10)
   const edgeOffsetTolerance = percentOfView.measure(50)
@@ -52,7 +52,7 @@ export function ScrollBounds(
   const self: ScrollBoundsType = {
     shouldConstrain,
     constrain,
-    toggleActive,
+    toggleActive
   }
   return self
 }

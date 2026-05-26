@@ -12,20 +12,20 @@ import type { Vector1DType } from './Vector1d'
 import type { PercentOfViewType } from './PercentOfView'
 import { Limit } from './Limit'
 import type {
-  WindowType,
-} from './utils'
+  WindowType
+} from './utils';
 import {
   deltaAbs,
   factorAbs,
   isBoolean,
   isMouseEvent,
   mathAbs,
-  mathSign,
+  mathSign
 } from './utils'
 
 type DragHandlerCallbackType = (
   emblaApi: EmblaCarouselType,
-  evt: PointerEventType,
+  evt: PointerEventType
 ) => boolean | void
 
 export type DragHandlerOptionType = boolean | DragHandlerCallbackType
@@ -55,7 +55,7 @@ export function DragHandler(
   dragThreshold: number,
   skipSnaps: boolean,
   baseFriction: number,
-  watchDrag: DragHandlerOptionType,
+  watchDrag: DragHandlerOptionType
 ): DragHandlerType {
   const { cross: crossAxis, direction } = axis
   const focusNodes = ['INPUT', 'SELECT', 'TEXTAREA']
@@ -84,7 +84,7 @@ export function DragHandler(
 
     const node = rootNode
     initEvents
-      .add(node, 'dragstart', evt => evt.preventDefault(), nonPassiveEvent)
+      .add(node, 'dragstart', (evt) => evt.preventDefault(), nonPassiveEvent)
       .add(node, 'touchmove', () => undefined, nonPassiveEvent)
       .add(node, 'touchend', () => undefined)
       .add(node, 'touchstart', downIfAllowed)
@@ -204,7 +204,7 @@ export function DragHandler(
   const self: DragHandlerType = {
     init,
     destroy,
-    pointerDown,
+    pointerDown
   }
   return self
 }

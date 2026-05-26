@@ -1,5 +1,5 @@
 import type { LooseOptionsType, CreateOptionsType } from './Options'
-import type { WindowType } from './utils'
+import type { WindowType } from './utils';
 import { objectKeys, objectsMergeDeep } from './utils'
 
 type OptionsType = Partial<CreateOptionsType<LooseOptionsType>>
@@ -7,7 +7,7 @@ type OptionsType = Partial<CreateOptionsType<LooseOptionsType>>
 export type OptionsHandlerType = {
   mergeOptions: <TypeA extends OptionsType, TypeB extends OptionsType>(
     optionsA: TypeA,
-    optionsB?: TypeB,
+    optionsB?: TypeB
   ) => TypeA
   optionsAtMedia: <Type extends OptionsType>(options: Type) => Type
   optionsMediaQueries: (optionsList: OptionsType[]) => MediaQueryList[]
@@ -16,7 +16,7 @@ export type OptionsHandlerType = {
 export function OptionsHandler(ownerWindow: WindowType): OptionsHandlerType {
   function mergeOptions<TypeA extends OptionsType, TypeB extends OptionsType>(
     optionsA: TypeA,
-    optionsB?: TypeB,
+    optionsB?: TypeB
   ): TypeA {
     return <TypeA>objectsMergeDeep(optionsA, optionsB || {})
   }
@@ -24,8 +24,8 @@ export function OptionsHandler(ownerWindow: WindowType): OptionsHandlerType {
   function optionsAtMedia<Type extends OptionsType>(options: Type): Type {
     const optionsAtMedia = options.breakpoints || {}
     const matchedMediaOptions = objectKeys(optionsAtMedia)
-      .filter(media => ownerWindow.matchMedia(media).matches)
-      .map(media => optionsAtMedia[media])
+      .filter((media) => ownerWindow.matchMedia(media).matches)
+      .map((media) => optionsAtMedia[media])
       .reduce((a, mediaOption) => mergeOptions(a, mediaOption), {})
 
     return mergeOptions(options, matchedMediaOptions)
@@ -33,7 +33,7 @@ export function OptionsHandler(ownerWindow: WindowType): OptionsHandlerType {
 
   function optionsMediaQueries(optionsList: OptionsType[]): MediaQueryList[] {
     return optionsList
-      .map(options => objectKeys(options.breakpoints || {}))
+      .map((options) => objectKeys(options.breakpoints || {}))
       .reduce((acc, mediaQueries) => acc.concat(mediaQueries), [])
       .map(ownerWindow.matchMedia)
   }
@@ -41,7 +41,7 @@ export function OptionsHandler(ownerWindow: WindowType): OptionsHandlerType {
   const self: OptionsHandlerType = {
     mergeOptions,
     optionsAtMedia,
-    optionsMediaQueries,
+    optionsMediaQueries
   }
   return self
 }

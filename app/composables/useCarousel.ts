@@ -2,7 +2,7 @@ import { ref, onMounted, onUnmounted, watch, type Ref } from 'vue'
 import EmblaCarousel, {
   type EmblaCarouselType,
   type EmblaOptionsType,
-  type EmblaPluginType,
+  type EmblaPluginType
 } from './carousel/EmblaCarousel'
 import { useWheelGestures } from './useWheelGestures'
 
@@ -13,7 +13,7 @@ export type UseCarouselOptions = EmblaOptionsType & {
 
 export function useCarousel(
   rootRef: Ref<HTMLElement | null>,
-  options: UseCarouselOptions = {},
+  options: UseCarouselOptions = {}
 ) {
   let embla: EmblaCarouselType | null = null
   let wheelGesturesHandler: ReturnType<typeof useWheelGestures> | null = null
@@ -59,7 +59,7 @@ export function useCarousel(
     // Enable trackpad/wheel swipe if requested
     if (options.wheelGestures) {
       wheelGesturesHandler = useWheelGestures(rootRef, () => embla, {
-        axis: options.axis || 'x',
+        axis: options.axis || 'x'
       })
       wheelGesturesHandler.init()
     }
@@ -110,6 +110,6 @@ export function useCarousel(
     },
 
     // Raw Embla API access (escape hatch)
-    api: () => embla,
+    api: () => embla
   }
 }

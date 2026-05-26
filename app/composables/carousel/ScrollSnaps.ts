@@ -14,7 +14,7 @@ export function ScrollSnaps(
   alignment: AlignmentType,
   containerRect: NodeRectType,
   slideRects: NodeRectType[],
-  slidesToScroll: SlidesToScrollType,
+  slidesToScroll: SlidesToScrollType
 ): ScrollSnapsType {
   const { startEdge, endEdge } = axis
   const { groupSlides } = slidesToScroll
@@ -24,25 +24,25 @@ export function ScrollSnaps(
 
   function measureSizes(): number[] {
     return groupSlides(slideRects)
-      .map(rects => arrayLast(rects)[endEdge] - rects[0][startEdge])
+      .map((rects) => arrayLast(rects)[endEdge] - rects[0][startEdge])
       .map(mathAbs)
   }
 
   function measureUnaligned(): number[] {
     return slideRects
-      .map(rect => containerRect[startEdge] - rect[startEdge])
-      .map(snap => -mathAbs(snap))
+      .map((rect) => containerRect[startEdge] - rect[startEdge])
+      .map((snap) => -mathAbs(snap))
   }
 
   function measureAligned(): number[] {
     return groupSlides(snaps)
-      .map(g => g[0])
+      .map((g) => g[0])
       .map((snap, index) => snap + alignments[index])
   }
 
   const self: ScrollSnapsType = {
     snaps,
-    snapsAligned,
+    snapsAligned
   }
   return self
 }

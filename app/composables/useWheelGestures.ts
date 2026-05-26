@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 import WheelGestures from 'wheel-gestures'
 import type { WheelEventState } from 'wheel-gestures'
-import type { EmblaCarouselType } from './carousel/EmblaCarousel'
+import type { EmblaCarouselType } from '~/composables/carousel/EmblaCarousel'
 
 export interface UseWheelGesturesOptions {
   /** Which axis to react to. Default: 'x' */
@@ -22,7 +22,7 @@ export interface UseWheelGesturesOptions {
 export function useWheelGestures(
   rootRef: Ref<HTMLElement | null>,
   getEmbla: () => EmblaCarouselType | null,
-  options: UseWheelGesturesOptions = {},
+  options: UseWheelGesturesOptions = {}
 ) {
   const { axis = 'x' } = options
   let cleanup = () => {}
@@ -38,7 +38,7 @@ export function useWheelGestures(
 
     const wheelGestures = WheelGestures({
       preventWheelAction: axis,
-      reverseSign: [true, true, false],
+      reverseSign: [true, true, false]
     })
 
     let isStarted = false
@@ -97,7 +97,7 @@ export function useWheelGestures(
 
     function createRelativeMouseEvent(
       type: 'mousedown' | 'mousemove' | 'mouseup',
-      state: WheelEventState,
+      state: WheelEventState
     ) {
       let [moveX, moveY] = state.axisMovement
 
@@ -107,7 +107,7 @@ export function useWheelGestures(
       if (isAtBoundary) {
         const progressRatio = Math.min(
           overBoundaryAccumulation / scrollBoundaryThreshold,
-          1,
+          1
         )
         const dampingFactor = 0.25 + progressRatio * 0.5
         const counterMoveSign = moveX > 0 ? -1 : 1
@@ -138,13 +138,13 @@ export function useWheelGestures(
         button: 0,
         bubbles: true,
         cancelable: true,
-        composed: true,
+        composed: true
       })
     }
 
     function checkIfAtBoundary(state: WheelEventState) {
       const {
-        axisDelta: [deltaX, deltaY],
+        axisDelta: [deltaX, deltaY]
       } = state
       const progress = embla.scrollProgress()
       const canScrollNext = progress < 1
@@ -152,9 +152,9 @@ export function useWheelGestures(
       const primaryAxisDelta = axis === 'x' ? deltaX : deltaY
       const isScrollingNext = primaryAxisDelta < 0
       const isScrollingPrev = primaryAxisDelta > 0
-      const isAtBoundary
-        = (isScrollingNext && !canScrollNext)
-          || (isScrollingPrev && !canScrollPrev)
+      const isAtBoundary =
+        (isScrollingNext && !canScrollNext) ||
+        (isScrollingPrev && !canScrollPrev)
 
       return { isAtBoundary, primaryAxisDelta }
     }
@@ -170,8 +170,7 @@ export function useWheelGestures(
           wheelGestureEnded(state)
           return true
         }
-      }
-      else {
+      } else {
         overBoundaryAccumulation = 0
       }
 
@@ -180,22 +179,22 @@ export function useWheelGestures(
 
     function handleWheel(state: WheelEventState) {
       const {
-        axisDelta: [deltaX, deltaY],
+        axisDelta: [deltaX, deltaY]
       } = state
       const primaryAxisDelta = axis === 'x' ? deltaX : deltaY
       const crossAxisDelta = axis === 'x' ? deltaY : deltaX
-      const isRelease
-        = state.isMomentum && state.previous && !state.previous.isMomentum
-      const isEndingOrRelease
-        = (state.isEnding && !state.isMomentum) || isRelease
-      const primaryAxisDeltaIsDominant
-        = Math.abs(primaryAxisDelta) > Math.abs(crossAxisDelta)
+      const isRelease =
+        state.isMomentum && state.previous && !state.previous.isMomentum
+      const isEndingOrRelease =
+        (state.isEnding && !state.isMomentum) || isRelease
+      const primaryAxisDeltaIsDominant =
+        Math.abs(primaryAxisDelta) > Math.abs(crossAxisDelta)
 
       if (
-        primaryAxisDeltaIsDominant
-        && !isStarted
-        && !state.isMomentum
-        && !blockedWaitUntilGestureEnd
+        primaryAxisDeltaIsDominant &&
+        !isStarted &&
+        !state.isMomentum &&
+        !blockedWaitUntilGestureEnd
       ) {
         wheelGestureStarted(state)
       }
@@ -210,8 +209,7 @@ export function useWheelGestures(
 
       if (isEndingOrRelease) {
         wheelGestureEnded(state)
-      }
-      else {
+      } else {
         containerNode.dispatchEvent(createRelativeMouseEvent('mousemove', state))
       }
     }

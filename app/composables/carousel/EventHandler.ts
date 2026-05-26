@@ -42,7 +42,7 @@ export function EventHandler(): EventHandlerType {
   }
 
   function emit(evt: EmblaEventType): EventHandlerType {
-    getListeners(evt).forEach(e => e(api, evt))
+    getListeners(evt).forEach((e) => e(api, evt))
     return self
   }
 
@@ -52,7 +52,7 @@ export function EventHandler(): EventHandlerType {
   }
 
   function off(evt: EmblaEventType, cb: CallbackType): EventHandlerType {
-    listeners[evt] = getListeners(evt).filter(e => e !== cb)
+    listeners[evt] = getListeners(evt).filter((e) => e !== cb)
     return self
   }
 
@@ -65,7 +65,7 @@ export function EventHandler(): EventHandlerType {
     emit,
     off,
     on,
-    clear,
+    clear
   }
   return self
 }
