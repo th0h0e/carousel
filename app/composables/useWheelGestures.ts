@@ -109,7 +109,7 @@ export function useWheelGestures(
           overBoundaryAccumulation / scrollBoundaryThreshold,
           1
         )
-        const dampingFactor = 0.1 + progressRatio * 0.1
+        const dampingFactor = 0.01 + progressRatio * 0.01
         const counterMoveSign = moveX > 0 ? -1 : 1
         const counterMovement = overBoundaryAccumulation * counterMoveSign
         const dampingMovement = counterMovement * dampingFactor
