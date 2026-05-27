@@ -49,7 +49,7 @@ export function useWheelGestures(
 
     function updateBoundaryThreshold() {
       const rect = containerNode.getBoundingClientRect()
-      scrollBoundaryThreshold = (axis === 'x' ? rect.width : rect.height) / 0.01
+      scrollBoundaryThreshold = (axis === 'x' ? rect.width : rect.height) / 2
     }
 
     updateBoundaryThreshold()
